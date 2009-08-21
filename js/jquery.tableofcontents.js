@@ -3,6 +3,8 @@
 	
 	Programmed by Doug Neiner
 	
+	Version: 0.8
+	
 	Based on code and concept by Janko Jovanovic 
 	  in his article: http://www.jankoatwarpspeed.com/post/2009/08/20/Table-of-contents-using-jQuery.aspx
 	
