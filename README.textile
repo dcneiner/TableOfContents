@@ -7,6 +7,12 @@ _Based on code and concept by Janko Jovanovic in his article: "Automatically gen
 
 This plugin creates a table of contents based on the <code><h1></code> through <code><h6></code> tags of a webpage, or subset of a webpage. It auto generates slug-like id's for linking if they are not present already, can optionally add "Top" links to each heading, offers the choice of nested <code><ol></code> or <code><li></code> lists or straight <code><a></code> links, and can optionally create a proportionate display based on the positioning of the headings.
 
+h2. Examples
+
+* "Example 1: Standard TOC, Default Options, Bulleted List":http://fuelyourcoding.com/scripts/toc/examples/example1.html
+* "Example 2: H2 through H4, With Top Links, Scoped to div#wrapper, Ordered List":http://fuelyourcoding.com/scripts/toc/examples/example2.html
+* "Example 3: Proportionate Spacing, H1 through H4":http://fuelyourcoding.com/scripts/toc/examples/example3.html
+
 h2. Features
 
 * Can be scoped to any area of the page
@@ -49,11 +55,11 @@ The <code>tableOfContents</code> method takes two parameters:
 
 <pre>$("#table-of-contents-container").tableOfContents(scope, options)</pre>
 
-h3. <code>scope</code> (default: <code>document.body</code>)
+h3. *<code>scope</code> (default: <code>document.body</code>)*
 
 If provided, the scope must be a valid jQuery selector (as a string), jQuery collection object, or null. If scope isn't <code>null</code> or <code>undefined</code>, it will limit the searching of the plugin to only that object and its children. If scope is <code>null</code> or <code>undefined</code>, then it defaults to <code>document.body</code>.
 
-h3. <code>options</code> (<code>name</code>: <code>default</code>)
+h3. *<code>options</code> (<code>name</code>: <code>default</code>)*
 
 The following are the options that can accompany the function call:
 

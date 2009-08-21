@@ -53,7 +53,7 @@
             base.options = $.extend({},$.TableOfContents.defaultOptions, options);
 
 			// Gets the scope. Defaults to the entire document if not specified
-            if(scope == undefined || scope == null) scope = "document.body";
+            if(typeof(scope) == "undefined" || scope == null) scope = document.body;
             base.$scope = $(scope);
 
 			// Find the first heading withing the scope
