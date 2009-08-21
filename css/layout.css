@@ -23,6 +23,10 @@ pre {
 	padding: 5px;
 	border: dotted 1px #aaa;
 	background: #e8e8e8;
+	font-family: monospace;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap !important;
+	word-wrap: break-word;
 }
 
 #toc {
