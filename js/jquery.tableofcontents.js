@@ -2,8 +2,9 @@
 	TableOfContents Plugin for jQuery
 	
 	Programmed by Doug Neiner
+	Edited by Dennis Stevense for Digital Deployment
 	
-	Version: 0.8
+	Version: 0.8-digitaldeployment
 	
 	Based on code and concept by Janko Jovanovic 
 	  in his article: http://www.jankoatwarpspeed.com/post/2009/08/20/Table-of-contents-using-jQuery.aspx
@@ -74,8 +75,7 @@
 			var filtered_tags = base.tags.splice(base.options.startLevel - 1, base.options.depth);
 			
 			// Cache all the headings that match our new filter
-			base.$headings = base.$scope.find(filtered_tags.join(', '));
-
+			base.$headings = base.findHeadings(base.$scope, filtered_tags.join(', '));
 			
 			// If topLinks is enabled, set/get an id for the body element
 			if(base.options.topLinks !== false){
@@ -106,6 +106,29 @@
 			
 			return base; // Return this object for memory cleanup
         };
+
+		base.findHeadings = function($element, selector, $headings) {
+			// If no headings are given, default to an empty jQuery set
+			if ($headings === undefined) {
+				$headings = $([]);
+			}
+			
+			// Iterate the children in order
+			$element.children().each(function(i, child) {
+				$child = $(child);
+				
+				if ($child.is(selector)) {
+					// We found a header, add it
+					$headings = $headings.add($child);
+				}
+				else {
+					// Recurse
+					$headings = base.findHeadings($child, selector, $headings);
+				}
+			});
+			
+			return $headings;
+		}
 
 		// Helper function that returns true for both OL and UL lists
 		base.tieredList = function(){
