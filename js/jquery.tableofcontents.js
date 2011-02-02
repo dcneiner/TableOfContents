@@ -58,20 +58,20 @@
             if(typeof(scope) == "undefined" || scope == null) scope = document.body;
             base.$scope = $(scope);
 
+            // Quick validation on depth
+            if(base.options.depth < 1) base.options.depth = 1;
+
+            // Get only the tags starting with startLevel, and counting the depth
+            var filtered_tags = base.tags.splice(base.options.startLevel - 1, base.options.depth);
+
             // Find the first heading withing the scope
-            var $first = base.$scope.find(base.tags.join(', ')).filter(':first');
+            var $first = base.$scope.find(filtered_tags.join(', ')).filter(':first');
 
             // If no headings were found, stop building the TOC
             if($first.length != 1) return;
 
             // Set the starting depth
             base.starting_depth = base.options.startLevel;
-
-            // Quick validation on depth
-            if(base.options.depth < 1) base.options.depth = 1;
-
-            // Get only the tags starting with startLevel, and counting the depth
-            var filtered_tags = base.tags.splice(base.options.startLevel - 1, base.options.depth);
 
             // Cache all the headings that match our new filter
             base.$headings = base.$scope.find(filtered_tags.join(', '));
