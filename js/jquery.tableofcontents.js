@@ -79,14 +79,19 @@
 			
 			// If topLinks is enabled, set/get an id for the body element
 			if(base.options.topLinks !== false){
-				var id = $(document.body).attr('id');
-				if(id == "") {
-					id = base.options.topBodyId;
-					document.body.id = id;
-				};
-				
-				// Cache the id locally
-				base.topLinkId = id;
+
+				base.topLinkId = base.options.topBodyId;
+
+				if($('#' + base.topLinkId).size() == 0) {
+					var id = $(document.body).attr('id');
+					if(typeof id == "undefined" || id == "") {
+						id = base.options.topBodyId;
+						document.body.id = id;
+					};
+
+					// Cache the id locally
+					base.topLinkId = id;
+				}
 			};
 
 
