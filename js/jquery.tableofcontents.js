@@ -76,6 +76,10 @@
 			// Cache all the headings that match our new filter
 			base.$headings = base.$scope.find(filtered_tags.join(', '));
 
+            // Optionally filters the headings we want to feature on the TOC
+            if ($.isFunction(base.options.exclude)) {
+                base.$headings = base.options.exclude(base.$headings, base.$scope);
+            }
 			
 			// If topLinks is enabled, set/get an id for the body element
 			if(base.options.topLinks !== false){
@@ -296,8 +300,14 @@
 		// either position = fixed | absolute | relative
 		// Finally, the TOC wrapper must not be a UL or an LI or this setting will
 		// have no effect
-		proportionateSpacing: false
-		
+		proportionateSpacing: false,
+
+        // Optionally filters the headings we want to feature on the table
+        // of content. It may be useful if, for instance, we want to
+        // exclude headings that are within elements such as <article> or
+        // <section>. The value must be a function, whose first argument is the
+        // jquery collection of headings and that return a sub-collection.
+        exclude: function($heading, $scope) { return $heading }
     };
 	
 
