@@ -60,12 +60,6 @@
             if(typeof(scope) == "undefined" || scope == null) scope = document.body;
             base.$scope = $(scope);
 
-			// Find the first heading withing the scope
-			var $first = base.$scope.find(base.tags.join(', ')).filter(':first');
-			
-			// If no headings were found, stop building the TOC
-			if($first.length != 1) return; 
-			
 			// Set the starting depth
 			base.starting_depth = base.options.startLevel;
 
@@ -77,6 +71,9 @@
 			
 			// Cache all the headings that match our new filter
 			base.$headings = base.$scope.find(filtered_tags.join(', '));
+	                
+	                // headings count less than minCount, stop building the TOC
+	                if(base.$headings.length < base.options.minCount) return;
 
 			
 			// If topLinks is enabled, set/get an id for the body element
@@ -298,7 +295,9 @@
 		// either position = fixed | absolute | relative
 		// Finally, the TOC wrapper must not be a UL or an LI or this setting will
 		// have no effect
-		proportionateSpacing: false
+		proportionateSpacing: false,
+	        // If  headings  less than this value, stop building the TOC
+	        minCount: 1
 		
     };
 	
