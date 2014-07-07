@@ -58,12 +58,6 @@
             if(typeof(scope) == "undefined" || scope == null) scope = document.body;
             base.$scope = $(scope);
 
-			// Find the first heading withing the scope
-			var $first = base.$scope.find(base.tags.join(', ')).filter(':first');
-			
-			// If no headings were found, stop building the TOC
-			if($first.length != 1) return; 
-			
 			// Set the starting depth
 			base.starting_depth = base.options.startLevel;
 
@@ -80,6 +74,9 @@
             if ($.isFunction(base.options.exclude)) {
                 base.$headings = base.options.exclude(base.$headings, base.$scope);
             }
+			
+			// headings count less than minCount, stop building the TOC
+	        if(base.$headings.length < base.options.minCount) return;
 			
 			// If topLinks is enabled, set/get an id for the body element
 			if(base.options.topLinks !== false){
@@ -330,7 +327,10 @@
         // exclude headings that are within elements such as <article> or
         // <section>. The value must be a function, whose first argument is the
         // jquery collection of headings and that return a sub-collection.
-        exclude: function($heading, $scope) { return $heading }
+        exclude: function($heading, $scope) { return $heading },
+        
+        // If  headings  less than this value, stop building the TOC
+	    minCount: 1
     };
 	
 
