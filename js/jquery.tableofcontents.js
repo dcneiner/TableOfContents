@@ -2,15 +2,16 @@
 	TableOfContents Plugin for jQuery
 	
 	Programmed by Doug Neiner
+	Additional Programming by Alexandre Leray, Tiou Lims, and Dennis Stevense (for Digital Deployment)
 	
-	Version: 0.8
+	Version: 0.9
 	
 	Based on code and concept by Janko Jovanovic 
 	  in his article: http://www.jankoatwarpspeed.com/post/2009/08/20/Table-of-contents-using-jQuery.aspx
 	
 	This plugin is offered under the MIT license:
 	
-	(c) 2009 by Doug Neiner, http://dougneiner.com
+	(c) 2009-2014 by Doug Neiner, http://dougneiner.com
 	
 	Permission is hereby granted, free of charge, to any person obtaining
     a copy of this software and associated documentation files (the
