@@ -76,6 +76,16 @@
 			// Cache all the headings that match our new filter
 			base.$headings = base.$scope.find(filtered_tags.join(', '));
 
+			if (base.options.ignoreClass !== "") {
+				var ignoreClassIndex;
+				base.$headings.each(function(i,element) {
+					$this = $(this);
+					if ($this.hasClass(base.options.ignoreClass)) {
+						ignoreClassIndex = i;
+					}
+				});
+				base.$headings.splice(ignoreClassIndex,1);
+			}
 			
 			// If topLinks is enabled, set/get an id for the body element
 			if(base.options.topLinks !== false){
@@ -281,6 +291,8 @@
 		// Set topLinks to true to use the text "Top" or set it to some text or html
 		// content you wish to use as the body of the link
 		topLinks: false,
+
+		ignoreClass: "",
 		
 		// If topLinks is either true or a text/html value, you can also set the following options:
 		
