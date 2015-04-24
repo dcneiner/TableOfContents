@@ -84,7 +84,9 @@
 						ignoreClassIndex = i;
 					}
 				});
-				base.$headings.splice(ignoreClassIndex,1);
+				if(ignoreClassIndex) {
+					base.$headings.splice(ignoreClassIndex, 1);
+				}
 			}
 			
 			// If topLinks is enabled, set/get an id for the body element
