@@ -77,16 +77,12 @@
 			base.$headings = base.$scope.find(filtered_tags.join(', '));
 
 			if (base.options.ignoreClass !== "") {
-				var ignoreClassIndex;
 				base.$headings.each(function(i,element) {
 					$this = $(this);
 					if ($this.hasClass(base.options.ignoreClass)) {
-						ignoreClassIndex = i;
+                      base.$headings.splice(i, 1);
 					}
 				});
-				if(ignoreClassIndex) {
-					base.$headings.splice(ignoreClassIndex, 1);
-				}
 			}
 			
 			// If topLinks is enabled, set/get an id for the body element
